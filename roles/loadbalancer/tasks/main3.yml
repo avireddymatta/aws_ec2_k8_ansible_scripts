@@ -1,0 +1,12 @@
+---
+- name: add EC2 Instances to AWS ELB
+  community.aws.elb_instance:
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
+        instance_id: "{{item}}"
+        ec2_elbs: "{{name}}"
+        state: present
+        region: "{{region_name}}"
+  loop: 
+    - i-01077a77f64976f58
+    - i-01112d057f1d80c9a

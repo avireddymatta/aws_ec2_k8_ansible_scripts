@@ -1,2 +1,7 @@
 ---
 # vars file for loadbalancer
+region_name: ap-south-1
+sg_name: "ec2_k8_group"
+name: ec2lb
+my_port: 81
+subnet_name: subnet-00ae0de616493e7e7

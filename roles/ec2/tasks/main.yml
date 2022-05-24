@@ -19,6 +19,7 @@
     rules_egress:
     - proto: all
       cidr_ip: 0.0.0.0/0
+  register: securitygroup
 
 - name: Launching three EC2 instances on AWS
   ec2:
@@ -48,6 +49,19 @@
     msg: "{{item.public_ip}}"
   with_items:
     - "{{ ip }}"
+
+- set_fact:
+    id: "{{ id + item['instance_ids']}}"
+  with_items:
+    - "{{ec2.results}}"
+- debug:
+    msg: "{{ id }}"
+
+- set_fact:
+    security_group_id: "{{ securitygroup.group_id|string}}"
+
+- debug:
+    msg: "{{security_group_id}}"
 
 - name: dynamically add instancecs to the group ec2_master into the in-memory inventory
   add_host:

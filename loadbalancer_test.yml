@@ -1,0 +1,10 @@
+---      
+- name: Creating and Configuring the load balancer
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+        - awscred.yml
+  tasks:
+    - name: Running LoadBalancer Role
+      include_role:
+        name: loadbalancer

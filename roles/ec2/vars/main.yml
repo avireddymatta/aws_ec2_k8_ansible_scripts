@@ -11,6 +11,7 @@ python_pkgs:
 
 ip: []
 id: []
+security_group_id: ""
 instance_flavour: t2.micro
 subnet_name: subnet-00ae0de616493e7e7
 region_name: ap-south-1

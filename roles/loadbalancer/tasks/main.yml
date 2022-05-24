@@ -1,2 +1,25 @@
 ---
-# tasks file for loadbalancer
+- amazon.aws.elb_classic_lb:
+    name: "{{name}}"
+    state: present
+    region: "{{region_name}}"
+    security_group_ids: "{{security_group_id}}"
+    aws_access_key: "{{access_key}}"
+    aws_secret_key: "{{secret_key}}"
+    zones:
+      - "{{region_name}}b"
+    listeners:
+      - protocol: http # options are http, https, ssl, tcp
+        load_balancer_port: 80
+        instance_port: 80
+        proxy_protocol: True
+
+- name: add EC2 Instances to AWS ELB
+  community.aws.elb_instance:
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
+        instance_id: "{{item}}"
+        ec2_elbs: "{{name}}"
+        state: present
+        region: "{{region_name}}"
+  loop: "{{id}}"
