@@ -9,6 +9,10 @@
         {
         "exec-opts": ["native.cgroupdriver=systemd"]
         }
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
 
 - name: install Docker
   apt:

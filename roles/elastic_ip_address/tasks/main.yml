@@ -1,0 +1,13 @@
+---
+# tasks file for elastic_ip_address
+- name: associate new elastic IPs with each of the instances
+  community.aws.ec2_eip:
+    device_id: "{{ item }}"
+  loop: "{{id}}"
+  register: eip
+
+- name: output the IP
+  ansible.builtin.debug:
+    msg: "{{eip.public_ip}}"
+  with_items:
+    - "{{eip}}"

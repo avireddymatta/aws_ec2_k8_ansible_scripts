@@ -63,14 +63,14 @@
 - debug:
     msg: "{{security_group_id}}"
 
-- name: dynamically add instancecs to the group ec2_master into the in-memory inventory
+- name: dynamically adding first instance to the group ec2_master into the in-memory inventory
   add_host:
     hostname: "{{ item.public_ip }}"
     groupname: ec2_master
   loop: "{{ ip }}"
   when: 'item.public_ip|string in ec2.results[0].instances[0].public_ip|string'
 
-- name: dynamically add instancecs to the group ec2_slave into the in-memory inventory
+- name: dynamically adding from second instancecs to the group ec2_slave into the in-memory inventory
   add_host:
     hostname: "{{ item.public_ip }}"
     groupname: ec2_slave

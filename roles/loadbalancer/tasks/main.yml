@@ -14,12 +14,12 @@
         instance_port: 80
         proxy_protocol: True
 
-- name: add EC2 Instances to AWS ELB
+- name: add EC2 Master Instance Id to AWS ELB
   community.aws.elb_instance:
         aws_access_key: "{{access_key}}"
         aws_secret_key: "{{secret_key}}"
-        instance_id: "{{item}}"
+        instance_id: "{{master_node_id}}"
         ec2_elbs: "{{name}}"
         state: present
         region: "{{region_name}}"
-  loop: "{{id}}"
+        wait_timeout: 45
