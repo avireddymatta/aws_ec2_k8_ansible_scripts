@@ -17,6 +17,6 @@ subnet_name: subnet-00ae0de616493e7e7
 region_name: ap-south-1
 vpc_name: vpc-0586b2aa95eff9e1c
 ami_id: ami-0756a1c858554433e
-keypair: k8s-servers
+keypair: aws_ec2
 my_port: 81
 sg_name: "ec2_k8_group"

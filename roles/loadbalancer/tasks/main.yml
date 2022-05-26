@@ -22,4 +22,5 @@
         ec2_elbs: "{{name}}"
         state: present
         region: "{{region_name}}"
-        wait_timeout: 45
+        wait: yes
+        wait_timeout: 120
