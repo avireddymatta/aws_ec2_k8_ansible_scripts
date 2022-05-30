@@ -1,0 +1,22 @@
+---
+- name: Creating and Configuring the load balancer
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+        - awscred.yml
+  tasks:
+        - name: associate new elastic IPs with each of the instances
+          community.aws.ec2_eip:
+                aws_access_key: "{{access_key}}"
+                aws_secret_key: "{{secret_key}}"
+                device_id: "{{ item }}"
+                region: ap-south-1
+          loop: 
+            - i-06264c041d3b9758a
+          register: eip
+
+        - name: output the IP
+          ansible.builtin.debug:
+                msg: "{{eip.results[0].public_ip}}"
+          with_items:
+                - "{{eip}}"
