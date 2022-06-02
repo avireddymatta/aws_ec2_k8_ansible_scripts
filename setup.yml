@@ -4,7 +4,7 @@
   vars_files:
         - awscred.yml
   tasks:
-    - name: Running EC2 Role
+    - name: Running EC2 Role, Creating EC2 instances along with Security Group
       include_role:
         name: ec2
 
@@ -27,16 +27,6 @@
         master_node_id: "{{id[0]}}"
 
 
-- hosts: localhost
-  gather_facts: no
-  vars_files:
-    - awscred.yml
-  name: Assigning Elastic IP address to each instance
-  roles:
-   - role: elastic_ip_address
-     vars:
-        id: "{{id}}"
- 
 - hosts: ec2_slave
   gather_facts: no
   tasks:
@@ -50,3 +40,13 @@
     - name: Deploying Pods
       include_role:
         name: pods
+
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - awscred.yml
+  name: Assigning Elastic IP address to each instance
+  roles:
+   - role: elastic_ip_address
+     vars:
+        id: "{{id}}"

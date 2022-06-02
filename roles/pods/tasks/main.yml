@@ -17,7 +17,8 @@
 
 - name: Deploying Network policy between MongoDb and catalog Api
   command: kubectl apply -f https://raw.githubusercontent.com/mattavicoder/catalog_k8_files/master/catalog-mongodb-networkpolicy.yaml
-  
-- name: Deploying Ingress for Catalog API, Catalog UI services
-  command: sudo kubectl apply -f https://raw.githubusercontent.com/mattavicoder/catalog_k8_files/master/k8.yml
+
+# Run below command manually or make this wait until above services becomes active  
+#- name: Deploying Ingress for Catalog API, Catalog UI services
+#  command: sudo kubectl apply -f https://raw.githubusercontent.com/mattavicoder/catalog_k8_files/master/k8.yml
 

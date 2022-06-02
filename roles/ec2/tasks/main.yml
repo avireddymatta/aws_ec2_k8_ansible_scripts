@@ -45,23 +45,24 @@
   with_items:
     - "{{ ec2.results }}"
 
-- debug:
-    msg: "{{item.public_ip}}"
-  with_items:
+#- debug:
+#    msg: "{{item.public_ip}}"
+#  with_items:
     - "{{ ip }}"
 
 - set_fact:
     id: "{{ id + item['instance_ids']}}"
   with_items:
     - "{{ec2.results}}"
-- debug:
-    msg: "{{ id }}"
+      
+#- debug:
+#    msg: "{{ id }}"
 
 - set_fact:
     security_group_id: "{{ securitygroup.group_id|string}}"
 
-- debug:
-    msg: "{{security_group_id}}"
+#- debug:
+#    msg: "{{security_group_id}}"
 
 - name: dynamically adding first instance to the group ec2_master into the in-memory inventory
   add_host:

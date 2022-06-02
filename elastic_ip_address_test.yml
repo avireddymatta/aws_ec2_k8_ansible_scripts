@@ -12,7 +12,7 @@
                 device_id: "{{ item }}"
                 region: ap-south-1
           loop: 
-            - i-06264c041d3b9758a
+            - i-0c6dbb3e33f8bdd48
           register: eip
 
         - name: output the IP
